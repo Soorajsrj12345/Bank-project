@@ -1,0 +1,23 @@
+
+  <h2 class="ms-2 p-2 mt-5">{{data}}</h2>
+    <div class="container bg-dark w-50 rounded text-center mt-5  p-2 ">
+        <h1 class="text-center text-white">Sign In TO Your Bank Account</h1>
+        <form action="" (ngSubmit)="login()" class="border border-dark">
+                <div class="mt-2 p-3">
+                <input [(ngModel)]="acno"   type="text" id="acid" name="acnum1" class="form-control" [placeholder]="inputplaceholder">
+           
+            </div>
+           <div class="mt-2 p-3">
+            <input [(ngModel)]="psw" type="password" id="psw1" name="paswrd1" class="form-control" placeholder="Password">
+
+           </div>
+           <div class="mt-2 p-3">
+            <button class="btn btn-outline-warning "  type="submit"> Login</button>
+           </div>
+
+           <div class="text-center text-white">
+           <b> Not Registered ? </b> <a style="text-decoration: none;" routerLink="register"><b>Register</b></a>
+           </div>
+    </form>>
+    </div>
+
