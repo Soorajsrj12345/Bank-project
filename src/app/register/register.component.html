@@ -1,23 +1,32 @@
-<div class="container bg-dark w-50 rounded text-center mt-5  p-2 ">
+<div class="container bg-black w-50 rounded text-center mt-5  p-2 border border-white">
     <h1 class="text-center text-white">Sign Up TO Bank </h1>
-    <form action="" class="border border-dark">
+    <form [formGroup]="registerForm" action="" class="">
             <div class="mt-2 p-3">
-            <input [(ngModel)]="uname"   type="text" id="unamid" name="usern1" class="form-control" placeholder="Enter Username">
-       
-        </div>
+            <input formControlName="uname"   type="text" id="unamid" name="usern1" class="form-control" placeholder="Enter Username">
+           </div>
+           <div *ngIf="this.registerForm.get('uname')?.errors && this.registerForm.get('uname')?.touched">
+             <p class="text-danger "> accept only characters</p>
+           </div>
        <div class="mt-2 p-3">
-        <input [(ngModel)]="acno"  type="password" id="acid" name="acnum1" class="form-control" placeholder="Enter Ac Num">
-
+        <input formControlName="acno"  type="text" id="acid" name="acnum1" class="form-control" placeholder="Enter Ac Num">
        </div>
+       <div *ngIf="this.registerForm.get('acno')?.errors && this.registerForm.get('acno')?.touched">
+        <p class="text-danger "> accept only numbers</p>
+      </div>
+
        <div class="mt-2 p-3">
-        <input [(ngModel)]="psw"  type="password" id="psw1" name="paswrd1" class="form-control" placeholder="Enter Password">
-
+        <input formControlName="psw"  type="password" id="psw1" name="paswrd1" class="form-control" placeholder="Enter Password">
        </div>
+
+       <div *ngIf="this.registerForm.get('psw')?.errors && this.registerForm.get('psw')?.touched">
+        <p class="text-danger "> accept only numbers and characters</p>
+      </div>
+
 
        <div class="mt-2 p-3">
         <button class="btn btn-outline-warning " (click)="register()"  type="button">Register</button>
        </div>
-</form>>
+</form>
 </div>
 
                                                                                 

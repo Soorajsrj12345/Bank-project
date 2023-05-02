@@ -1,48 +1,86 @@
-<h1>Welcome {{user}}</h1>
-<div class="p-2 mt-3 ms-1 w-25  text-center rounded-pill bg-white border border-dark"><a style="text-decoration:none;color: blue;" routerLink="/transaction" href="">View Transactions</a></div>
-<div class="container w-75   text-center ">
-<div class="row w-75 text-center ">
-        <div class="container col-6  bg-dark w-75  rounded text-center mt-3  p-3  ">
+<div class="text-white  mt-1 text-center">
+<h5>{{datedetails | date:'short'}}</h5>    <!--angular piping is used here..date class used -->
+</div>
+<h1 class="text-warning opacity-75 ">Welcome {{user}}</h1>
+<div class="p-2 w-25 mb-5  text-center rounded-pill bg-black border border-white" style="margin-left: 35rem;"><a style="text-decoration:none;color: blue;" routerLink="/transaction" href="">View Transactions</a></div>
+
+<app-deleteconfirm (onDelete)="Delete($event)" (oncancel)="cancel()" [item]="acno"></app-deleteconfirm>
+
+<div class="text-end pt-3 pe-4  ">
+  <button (click)="logout()"  class="btn-1 btn btn-warning text-end me-2">Logout</button>
+  <button (click)="deleteparent()" class="btn-1 btn btn-danger ">Delete Account</button>
+</div>
+ 
+<div [ngClass]="acno?'style':''" class=" container  row ms-5" style="margin-top: -4rem;">
+    <div  class="container col-6  text-center  ">
+            <div class=" container bg-black w-75 rounded text-center  p-5  border border-white">
             <h1 class="text-center text-white">DEPOSIT</h1>
-            <form action=""  class="border border-dark">
+            <form action="" [formGroup]="depositForm" class="">
                     <div class="mt-2 p-3">
-                    <input   type="text" [(ngModel)]="acno" id="acid" name="acnum1" class="form-control" placeholder="Enter acnum">
+                    <input   type="text" formControlName="acno" id="acid" name="acnum1" class="form-control" placeholder="Enter acnum">
                      </div>
+                     <div *ngIf="this.depositForm.get('acno')?.errors && this.depositForm.get('acno')?.touched">
+                        <p class="text-danger "> accept only numbers </p>
+                      </div>
+            
                <div class="mt-2 p-3">
-                <input  type="password" [(ngModel)]="psw" id="psw1" name="paswrd1" class="form-control" placeholder="Enter Password">
+                <input  type="password"formControlName="psw" id="psw1" name="paswrd1" class="form-control" placeholder="Enter Password">
                 </div>
+                <div *ngIf="this.depositForm.get('psw')?.errors && this.depositForm.get('psw')?.touched">
+                    <p class="text-danger "> accept only numbers and characters </p>
+                  </div>
+
         
                 <div class="mt-2 p-3">
-                    <input  type="text" [(ngModel)]="amnt"  id="amouid" name="amnt1" class="form-control" placeholder="Amount">
+                    <input  type="text" formControlName="amnt"  id="amouid" name="amnt1" class="form-control" placeholder="Amount">
                     </div>
+                    <div *ngIf="this.depositForm.get('amnt')?.errors && this.depositForm.get('amnt')?.touched">
+                        <p class="text-danger "> accept only numbers </p>
+                      </div>
+
             
                <div class="mt-2 p-3">
                 <button class="btn btn-outline-warning " (click)="deposit()"  type="button">Deposit</button>
                </div>
         
-            </form>>
-        </div>
+            </form>
+           </div>
+          </div>
         
-        <div class="container col-6  bg-dark w-75  rounded text-center mt-3 p-3  ">
+     <div class="container col-6  text-center  ">
+           <div class="container bg-black w-75 rounded text-center  p-5 border border-white ">   
             <h1 class="text-center text-white">WITHDRAW</h1>
-            <form action=""  class="border border-dark">
+            <form action="" [formGroup]="withdrawForm"  class="">
                     <div class="mt-2 p-3">
-                    <input   type="text"  [(ngModel)]="acno1" id="acid2" name="acnum2" class="form-control" placeholder="Enter acnum">
+                    <input   type="text" formControlName="acno1"  id="acid2" name="acnum2" class="form-control" placeholder="Enter acnum">
                      </div>
+                     <div *ngIf="this.withdrawForm.get('acno1')?.errors && this.withdrawForm.get('acno1')?.touched">
+                        <p class="text-danger "> accept only numbers </p>
+                      </div>
+
                <div class="mt-2 p-3">
-                <input  type="password"  [(ngModel)]="psw1" id="psw2" name="paswrd2" class="form-control" placeholder="Enter Password">
+                <input  type="password"  formControlName="psw1" id="psw2" name="paswrd2" class="form-control" placeholder="Enter Password">
                 </div>
+                <div *ngIf="this.withdrawForm.get('psw1')?.errors && this.withdrawForm.get('psw1')?.touched">
+                    <p class="text-danger "> accept only numbers and characters </p>
+                  </div>
+
         
                 <div class="mt-2 p-3">
-                    <input  type="text"  [(ngModel)]="amnt1" id="amouid1" name="amnt2" class="form-control" placeholder="Amount">
+                    <input  type="text" formControlName="amnt1" id="amouid1" name="amnt2" class="form-control" placeholder="Amount">
                     </div>
+                    <div *ngIf="this.withdrawForm.get('amnt1')?.errors && this.withdrawForm.get('amnt1')?.touched">
+                        <p class="text-danger "> accept only numbers </p>
+                      </div>
+
             
                <div class="mt-2 p-3">
                 <button class="btn btn-outline-warning " (click)="withdraw()"  type="button">Withdraw</button>
                </div>
         
-            </form>>
+            </form>
+        </div>
         </div>
 
 </div>  
-</div>   
+  

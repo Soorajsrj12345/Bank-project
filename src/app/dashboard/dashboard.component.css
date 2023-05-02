@@ -1,5 +1,8 @@
 h1{
-    color: rgb(79, 82,10,0.814);
     text-align: center;
-    margin-top: 50px;
+    margin-top:rem;
+    
+}
+.btn-1{
+    margin-top: -13rem;
 }

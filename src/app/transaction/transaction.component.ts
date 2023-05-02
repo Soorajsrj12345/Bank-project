@@ -10,8 +10,12 @@ export class TransactionComponent implements OnInit {
    transactionData:any
 
   constructor(private ds:DataService){
-   
-   this.transactionData=this.ds.getTransaction(this.ds.currentAcno)
+   this.ds.getTransaction( JSON.parse( localStorage.getItem("currentAcno") || "" )).subscribe((result:any)=>{
+    this.transactionData=result.transaction
+   })  
+  }
+  getTransaction() {
+    throw new Error('Method not implemented.');
   }
 
   ngOnInit(): void {
